@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { Web3ReactSelectedHooks } from '@web3-react/core'
 import { Connector } from '@web3-react/types'
+import getProvider from '../utils/getProvider'
 
 export default function Card({ connector, hooks, name }: { connector: Connector, hooks: Web3ReactSelectedHooks, name: string }) {
     const { useSelectedAccount, useSelectedChainId, useSelectedIsActive, useSelectedIsActivating } = hooks
@@ -9,8 +10,16 @@ export default function Card({ connector, hooks, name }: { connector: Connector,
     const isActive = useSelectedIsActive(connector)
     const account = useSelectedAccount(connector)
     const chain = useSelectedChainId(connector)
+    const provider = getProvider();
 
     console.log('connector', connector)
+
+    console.log('isActivating', isActivating)
+    console.log('isActive', isActive)
+    console.log('account', account)
+    console.log('chain', chain)
+
+    console.log('provider', provider)
 
 
     const [error, setError] = useState<Error | undefined>(undefined)
